@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <ImageView
+        android:id="@+id/status_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"></ImageView>
+    <RelativeLayout
+        android:id="@+id/relative_title"
+        android:visibility="visible"
+        android:background="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        >
+        <ImageView
+            android:visibility="gone"
+            android:id="@+id/image_left"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/back_icon"
+            android:onClick="onViewClick"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/text_left"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:text="返回"
+            android:gravity="center"
+            android:textSize="15sp"
+            android:textColor="@android:color/black"
+            android:layout_centerVertical="true"
+            android:drawableLeft="@drawable/back_icon"
+            android:drawablePadding="5dp"
+            android:onClick="onViewClick"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        <me.xdd.self.basemodule.widget.MarqueeTextView
+            android:id="@+id/text_title"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
+            android:gravity="center_vertical"
+            android:layout_centerInParent="true"
+            android:text=""
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:ellipsize="marquee"
+            android:singleLine="true"
+            android:marqueeRepeatLimit="marquee_forever"/>
+        <ImageView
+            android:visibility="gone"
+            android:id="@+id/image_right"
+            android:layout_alignParentRight="true"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:onClick="onViewClick"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/text_right"
+            android:gravity="center"
+            android:textSize="15sp"
+            android:textColor="@android:color/white"
+            android:text=""
+            android:onClick="onViewClick"
+            android:layout_alignParentRight="true"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:visibility="gone"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/single_view"
+        android:layout_width="match_parent"
+        android:background="#dfdfdf"
+        android:layout_height="0.6dp"/>
+    <FrameLayout
+        android:id="@+id/frame_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>
