@@ -14,6 +14,15 @@ import okhttp3.ResponseBody;
  * @author xuandong on 2019/5/15
  */
 public abstract class JsonCallback<T> extends AbsCallback<T> {
+    public HandleResponse mHandleResponse;
+
+    public interface HandleResponse {
+        void onStartLoad();
+
+        void onFinish();
+
+        <T> void onSuccess(com.lzy.okgo.model.Response<T> response);
+    }
     public Class<T> tClass;
 
     public JsonCallback(Class<T> tClass) {

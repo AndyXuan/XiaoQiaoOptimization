@@ -20,11 +20,6 @@ public interface Init {
      void onViewClicked(View v);
 
     /**
-     * 基本控件初始化
-     */
-     void initWidget(View... v);
-
-    /**
      *某些需求下要刷新页面
      * @param refresh
      */

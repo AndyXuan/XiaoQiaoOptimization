@@ -1,18 +1,64 @@
 package me.xdd.self.basemodule.base;
 
 import android.net.Uri;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ImageView;
+
+import com.lzy.okgo.model.Response;
 
 import java.io.File;
 
 import me.xdd.self.basemodule.R;
 import me.xdd.self.basemodule.glidemodule.GlideApp;
+import me.xdd.self.basemodule.utils.StatusBarUtils;
+import me.xdd.self.networkmodule.callback.JsonCallback;
 
 /**
  * @author xuandong on 2019/5/15
  */
-public abstract class BaseActivity extends AppCompatActivity implements OnGlideDisplayInterface {
+public abstract class BaseActivity extends AppCompatActivity implements OnGlideDisplayInterface,Init,JsonCallback.HandleResponse {
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        StatusBarUtils.setStatusBarMode(this,isTranslateSystemStatus(),isStatusTextColorBlack(),customSystemStatusColor());
+    }
+
+    //是否全透明
+    protected abstract boolean isTranslateSystemStatus();
+
+    //自定义系统导航栏颜色
+    protected abstract int customSystemStatusColor();
+
+    //是否颜色改变
+    protected abstract boolean isStatusTextColorBlack();
+
+
+    @Override
+    public void initIntentAndMemData() {
+
+    }
+
+    @Override
+    public void doInitBaseHttp() {
+
+    }
+
+    @Override
+    public void refreshUi(boolean refresh) {
+
+    }
+
+    @Override
+    public void onViewClicked(View v) {
+
+    }
+
+    protected void showToast(String toast){
+
+    }
 
     @Override
     public void displayByteImage(ImageView imageView, byte[] bytes, int errorImg, int placeImg, int fallbackImg) {
@@ -113,4 +159,20 @@ public abstract class BaseActivity extends AppCompatActivity implements OnGlideD
                 .fallback(R.drawable.place_holder_img)
                 .into(imageView);
     }
+
+    @Override
+    public void onStartLoad() {
+
+    }
+
+    @Override
+    public void onFinish() {
+
+    }
+
+    @Override
+    public <T> void onSuccess(Response<T> response) {
+
+    }
+
 }

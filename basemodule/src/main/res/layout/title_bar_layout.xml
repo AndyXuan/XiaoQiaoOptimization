@@ -19,13 +19,12 @@
         android:layout_height="42dp"
         >
         <ImageView
-            android:visibility="gone"
+            android:visibility="visible"
             android:id="@+id/image_left"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
             android:layout_centerVertical="true"
             android:src="@drawable/back_icon"
-            android:onClick="onViewClick"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
 
@@ -40,7 +39,7 @@
             android:layout_centerVertical="true"
             android:drawableLeft="@drawable/back_icon"
             android:drawablePadding="5dp"
-            android:onClick="onViewClick"
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
 
@@ -64,7 +63,6 @@
             android:layout_alignParentRight="true"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
-            android:onClick="onViewClick"
             android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
@@ -75,7 +73,6 @@
             android:textSize="15sp"
             android:textColor="@android:color/white"
             android:text=""
-            android:onClick="onViewClick"
             android:layout_alignParentRight="true"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
@@ -89,6 +86,7 @@
         android:id="@+id/single_view"
         android:layout_width="match_parent"
         android:background="#dfdfdf"
+        android:visibility="gone"
         android:layout_height="0.6dp"/>
     <FrameLayout
         android:id="@+id/frame_content"

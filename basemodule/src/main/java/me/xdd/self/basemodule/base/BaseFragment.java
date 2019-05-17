@@ -25,25 +25,24 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.lzy.okgo.model.Response;
+
 import java.io.File;
 
-
-/**
- * -
- * -注1: 如果是与ViewPager一起使用，调用的是setUserVisibleHint。
- * ------可以调用mViewPager.setOffscreenPageLimit(size),若设置了该属性 则viewpager会缓存指定数量的Fragment
- * -注2: 如果是通过FragmentTransaction的show和hide的方法来控制显示，调用的是onHiddenChanged.
- * -注3: 针对初始就show的Fragment 为了触发onHiddenChanged事件 达到lazy效果 需要先hide再show
- */
+import me.xdd.self.networkmodule.callback.JsonCallback;
 
 
-public abstract class BaseFragment extends Fragment implements Init,OnGlideDisplayInterface{
+public abstract class BaseFragment extends Fragment implements Init,OnGlideDisplayInterface,JsonCallback.HandleResponse {
     public String fragmentTitle;  //fragment标题
-
+    private View view;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = initView(inflater, container, savedInstanceState);
+        if (view == null){
+            view = initView(inflater, container, savedInstanceState);
+        }
         return view;
+
+
     }
 
     @Override
@@ -61,10 +60,7 @@ public abstract class BaseFragment extends Fragment implements Init,OnGlideDispl
 
     }
 
-    @Override
-    public void initWidget(View... v) {
 
-    }
 
     protected abstract View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState);
 
@@ -142,4 +138,18 @@ public abstract class BaseFragment extends Fragment implements Init,OnGlideDispl
         getBaseActivity().displayUriImage(imageView,uri);
     }
 
+    @Override
+    public <T> void onSuccess(Response<T> response) {
+
+    }
+
+    @Override
+    public void onStartLoad() {
+
+    }
+
+    @Override
+    public void onFinish() {
+
+    }
 }

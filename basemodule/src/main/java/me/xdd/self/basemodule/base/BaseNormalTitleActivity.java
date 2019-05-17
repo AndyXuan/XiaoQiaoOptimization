@@ -15,12 +15,10 @@ import me.xdd.self.basemodule.R;
 import me.xdd.self.basemodule.widget.MarqueeTextView;
 
 /**
- * @author xuandong on 2019/5/15
+ * @author xuandong on 2019/5/17
  */
-public abstract class BaseNormalTitleFragment extends BaseFragment {
-    private boolean isInit = false;  //是否初始化过
+public abstract class BaseNormalTitleActivity extends BaseActivity {
 
-    private View mView;
     private FrameLayout mFrameContent;
     private ImageView mStatusBar;
     private RelativeLayout mRelativeTitle;
@@ -30,54 +28,48 @@ public abstract class BaseNormalTitleFragment extends BaseFragment {
     private ImageView mImageRight;
     private TextView mTextRight;
     private View mSingleView;
-    public abstract View createContentView();
-
-    @Nullable
-    @Override
-    public View getView() {
-        return mView;
-    }
 
     @Override
-    protected View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mView = inflater.inflate(R.layout.title_bar_layout,container,false);
-        View childView = createContentView();
-        if (childView != null) {
-            mFrameContent = mView.findViewById(R.id.frame_content);
-            if (childView.getParent() != null) {
-                ((ViewGroup) childView.getParent()).removeView(childView);
-            }
-            mFrameContent.addView(childView);
-        }
-        return mView;
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        super.setContentView(R.layout.title_bar_layout);
     }
+
+
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        if (!isInit){
-            mStatusBar = mView.findViewById(R.id.status_bar);
-            mRelativeTitle = mView.findViewById(R.id.relative_title);
-            mImageLeft = mView.findViewById(R.id.image_left);
-            mTextLeft = mView.findViewById(R.id.text_left);
-            mTextTitle = mView.findViewById(R.id.text_title);
-            mImageRight = mView.findViewById(R.id.image_right);
-            mTextRight = mView.findViewById(R.id.text_right);
-            mSingleView = mView.findViewById(R.id.single_view);
-            hideTitleBarAndStatusBar();
-            init();
-            isInit = true;
-        }
-
-    }
-
-    protected void init(){
+    public void setContentView(int layoutResID) {
+        mFrameContent = (FrameLayout) findViewById(R.id.frame_content);
+        View v = LayoutInflater.from(this).inflate(layoutResID, null);
+        v.setLayoutParams(new FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT));
+        mFrameContent.addView(v);
+        mStatusBar = findViewById(R.id.status_bar);
+        mRelativeTitle = findViewById(R.id.relative_title);
+        mImageLeft = findViewById(R.id.image_left);
+        mTextLeft =findViewById(R.id.text_left);
+        mTextTitle = findViewById(R.id.text_title);
+        mImageRight = findViewById(R.id.image_right);
+        mTextRight = findViewById(R.id.text_right);
+        mSingleView = findViewById(R.id.single_view);
+        hideStatusBar();
         initIntentAndMemData();
         doInitBaseHttp();
     }
 
+    private void hideStatusBar(){
+        mStatusBar.setVisibility(View.GONE);
+    }
 
-
+    @Override
+    public void initIntentAndMemData() {
+        hideRight();
+        mImageLeft.setOnClickListener(new OnFinishClickListener());
+        mTextLeft.setOnClickListener(new OnFinishClickListener());
+        mImageRight.setOnClickListener(new OnRightClickListener());
+        mTextRight.setOnClickListener(new OnRightClickListener());
+    }
 
     //导航栏
     protected void hideTitleBar(){
@@ -92,7 +84,7 @@ public abstract class BaseNormalTitleFragment extends BaseFragment {
     }
     protected void setTitleBarBackgroundByColor(int color){
         showTitleBar();
-        mRelativeTitle.setBackgroundColor(ContextCompat.getColor(getActivity(),color));
+        mRelativeTitle.setBackgroundColor(ContextCompat.getColor(this,color));
     }
 
     protected void setTitleBarBackgroundByRes(int resId){
@@ -129,15 +121,14 @@ public abstract class BaseNormalTitleFragment extends BaseFragment {
     }
 
     protected TextView setTextColorLeft(int color){
-        showTextLeft().setTextColor(ContextCompat.getColor(getActivity(),color));
+        showTextLeft().setTextColor(ContextCompat.getColor(this,color));
         return mTextLeft;
     }
 
     protected TextView setTextColorLeft(String txt,int color){
-        setTextLeft(txt).setTextColor(ContextCompat.getColor(getActivity(),color));
+        setTextLeft(txt).setTextColor(ContextCompat.getColor(this,color));
         return mTextLeft;
     }
-
 
     // 左边图片
     protected ImageView showImageLeft(){
@@ -180,12 +171,12 @@ public abstract class BaseNormalTitleFragment extends BaseFragment {
     }
 
     protected TextView setTextColorRight(int color){
-        showTextRight().setTextColor(ContextCompat.getColor(getActivity(),color));
+        showTextRight().setTextColor(ContextCompat.getColor(this,color));
         return mTextRight;
     }
 
     protected TextView setTextColorRight(String txt,int color){
-        setTextRight(txt).setTextColor(ContextCompat.getColor(getActivity(),color));
+        setTextRight(txt).setTextColor(ContextCompat.getColor(this,color));
         return mTextRight;
     }
 
@@ -201,22 +192,18 @@ public abstract class BaseNormalTitleFragment extends BaseFragment {
         showImageRight().setImageResource(resId);
     }
 
-    //标题
-
-
-    @Override
-    public void setTextTitle(String title) {
-        fragmentTitle = title;
-        mTextTitle.setText(fragmentTitle);
+    // 标题
+    protected void setTextTitle(String title){
+        mTextTitle.setText(title);
     }
 
     protected void setTextTitleColor(int color){
-        mTextTitle.setTextColor(ContextCompat.getColor(getActivity(),color));
+        mTextTitle.setTextColor(ContextCompat.getColor(this,color));
     }
 
     protected void setTextTitle(String title,int color){
         setTextTitle(title);
-        mTextTitle.setTextColor(ContextCompat.getColor(getActivity(),color));
+        mTextTitle.setTextColor(ContextCompat.getColor(this,color));
     }
     protected void setTextTitle(String title,int color,int textSize){
         setTextTitle(title,color);
@@ -228,21 +215,11 @@ public abstract class BaseNormalTitleFragment extends BaseFragment {
     }
 
 
-    @Override
-    public void initIntentAndMemData() {
-        hideLeft();
-        hideRight();
-        mImageLeft.setOnClickListener(new OnFinishClickListener());
-        mTextLeft.setOnClickListener(new OnFinishClickListener());
-        mImageRight.setOnClickListener(new OnRightClickListener());
-        mTextRight.setOnClickListener(new OnRightClickListener());
-    }
-
     private class OnFinishClickListener implements View.OnClickListener{
 
         @Override
         public void onClick(View v) {
-            getActivity().finish();
+            finish();
         }
     }
 
@@ -255,4 +232,16 @@ public abstract class BaseNormalTitleFragment extends BaseFragment {
     }
 
     public void clickRightEvent(){};
+
+    @Override
+    public void refreshUi(boolean refresh) {
+
+    }
+
+    @Override
+    public void onViewClicked(View v) {
+
+    }
+
+
 }
