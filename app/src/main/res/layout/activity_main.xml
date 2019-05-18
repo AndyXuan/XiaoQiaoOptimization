@@ -4,18 +4,49 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+
     <LinearLayout
-        android:gravity="center"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
         <TextView
             android:id="@+id/pick_view_demo"
-            android:onClick="onViewClicked"
-            android:padding="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="onViewClicked"
+            android:padding="10dp"
             android:text="PickViewDemo" />
+
+        <TextView
+            android:id="@+id/different_dialog_demo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onViewClicked"
+            android:padding="10dp"
+            android:text="DifferentDialog" />
+        <TextView
+            android:id="@+id/dialog_fragment_demo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onViewClicked"
+            android:padding="10dp"
+            android:text="DialogFragment的使用" />
+        <TextView
+            android:id="@+id/dialog_fragment_demo_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onViewClicked"
+            android:padding="10dp"
+            android:text="DialogFragment封装" />
+        <TextView
+            android:id="@+id/system_dialog_demo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onViewClicked"
+            android:padding="10dp"
+            android:text="系统Dialog使用" />
     </LinearLayout>
 
 </ScrollView>

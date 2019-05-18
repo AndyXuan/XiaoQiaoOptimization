@@ -2,7 +2,6 @@ package com.xiaoqiao.qiaorong.qiaorong.demo.pickview;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -15,8 +14,6 @@ import com.xiaoqiao.qiaorong.qiaorong.base.TestBaseActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.ButterKnife;
-import me.xdd.self.basemodule.base.BaseNormalTitleActivity;
 import me.xdd.self.basemodule.pickview.ChooseItemPicker;
 import me.xdd.self.basemodule.pickview.ChooseTimePicker;
 import me.xdd.self.basemodule.pickview.OnCustomViewShowInterface;
@@ -162,6 +159,7 @@ public class PickViewDemoActivity extends TestBaseActivity {
                 startActivity(JsonDataActivity.newIntent(this));
                 break;
             case R.id.btn_fragment:
+               showToastError("请求失败");
                 break;
 
 

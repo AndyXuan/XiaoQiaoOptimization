@@ -37,7 +37,7 @@ public class JsonDataActivity extends TestBaseActivity {
             switch (msg.what) {
                 case MSG_LOAD_DATA:
                     if (thread==null){//如果已创建就不再重新创建子线程了
-                        showToast("开始解析数据");
+                        showToastNormal("开始解析数据");
 
                         thread = new Thread(new Runnable() {
                             @Override
@@ -51,12 +51,12 @@ public class JsonDataActivity extends TestBaseActivity {
                     break;
 
                 case MSG_LOAD_SUCCESS:
-                    showToast("解析数据成功");
+                    showToastNormal("解析数据成功");
                     isLoaded = true;
                     break;
 
                 case MSG_LOAD_FAILED:
-                    showToast("解析数据失败");
+                    showToastNormal("解析数据失败");
                     break;
 
             }
@@ -104,7 +104,7 @@ public class JsonDataActivity extends TestBaseActivity {
                 if (isLoaded){
                     showPickerView();
                 }else {
-                    showToast("数据暂未解析成功，请等待");
+                    showToastNormal("数据暂未解析成功，请等待");
 
                 }
 
@@ -121,7 +121,7 @@ public class JsonDataActivity extends TestBaseActivity {
                 String tx = options1Items.get(options1).getPickerViewText()+
                         options2Items.get(options1).get(options2)+
                         options3Items.get(options1).get(options2).get(options3);
-                showToast(tx);
+                showToastNormal(tx);
 
             }
         })

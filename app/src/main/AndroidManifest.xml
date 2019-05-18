@@ -23,6 +23,15 @@
             android:screenOrientation="portrait" />
         <activity android:name=".demo.pickview.JsonDataActivity"
             android:screenOrientation="portrait"></activity>
+        <activity android:name=".demo.dialog.ui.SystemDialog"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".demo.dialog.ui.NormalDFActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".demo.dialog.ui.DialogEncapActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".demo.dialog.ui.DiffentDialogActivity"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>

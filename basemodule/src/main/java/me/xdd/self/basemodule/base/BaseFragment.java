@@ -30,6 +30,7 @@ import com.lzy.okgo.model.Response;
 import java.io.File;
 
 import me.xdd.self.networkmodule.callback.JsonCallback;
+import xiaoqiao.qiaorong.com.uimodule.toast.Toasty;
 
 
 public abstract class BaseFragment extends Fragment implements Init,OnGlideDisplayInterface,JsonCallback.HandleResponse {
@@ -151,5 +152,20 @@ public abstract class BaseFragment extends Fragment implements Init,OnGlideDispl
     @Override
     public void onFinish() {
 
+    }
+
+    protected void showToastNormal(String toast){
+        Toasty.normal(getActivity(),toast).show();
+    }
+
+    protected void showToastError(String toast){
+//        Toasty.Config.getInstance().setGravity(Gravity.CENTER,0,0)
+//                .setTextSize(18)
+//                .apply();
+        Toasty.error(getActivity(),toast).show();
+    }
+
+    protected void showToastWarning(String toast){
+        Toasty.warning(getActivity(),toast).show();
     }
 }

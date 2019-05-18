@@ -4,6 +4,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -15,6 +16,7 @@ import me.xdd.self.basemodule.R;
 import me.xdd.self.basemodule.glidemodule.GlideApp;
 import me.xdd.self.basemodule.utils.StatusBarUtils;
 import me.xdd.self.networkmodule.callback.JsonCallback;
+import xiaoqiao.qiaorong.com.uimodule.toast.Toasty;
 
 /**
  * @author xuandong on 2019/5/15
@@ -56,8 +58,19 @@ public abstract class BaseActivity extends AppCompatActivity implements OnGlideD
 
     }
 
-    protected void showToast(String toast){
+    protected void showToastNormal(String toast){
+        Toasty.normal(this,toast).show();
+    }
 
+    protected void showToastError(String toast){
+//        Toasty.Config.getInstance().setGravity(Gravity.CENTER,0,0)
+//                .setTextSize(18)
+//                .apply();
+        Toasty.error(this,toast).show();
+    }
+
+    protected void showToastWarning(String toast){
+        Toasty.warning(this,toast).show();
     }
 
     @Override

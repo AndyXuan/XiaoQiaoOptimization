@@ -1,1 +1,1 @@
-include ':app', ':networkmodule', ':pickerview', ':basemodule'
+include ':app', ':networkmodule', ':pickerview', ':basemodule', ':uimodule'
